@@ -1,0 +1,30 @@
+
+----------
+Lab3
+Pre-requisite
+	1. Make sure cmake make dos2unix gcc g++ sshpass installed on the system	(No need on raspberry pi. it is already installed on that!)
+	2. dos2unix deploy.sh
+	3. ssh pi@dd.dd.dd.dd
+
+
+------
+Lab4
+	At board side
+	1. Connect wires
+	2. connect mouse and keyboard to board
+	3. Plug it
+	4. Ensure LED is ON
+
+
+	At raspberry device
+	1. ensure the device's internet connected to abc 
+	2. devices ip address @IP
+
+	At Mac side for the device connection
+	1. change @IP address to deploy.sh 
+
+	Setup Azure IOTHub
+	1. Create IOThub
+	2. Create Device 
+		- Copy Connection String & paste to deploy.sh
+

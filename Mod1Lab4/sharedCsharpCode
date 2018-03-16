@@ -1,0 +1,72 @@
+"bindings": [
+
+    {
+
+    "name": "telemetryEvent",
+
+    "type": "serviceBusTrigger",
+
+    "direction": "in",
+
+    "queueName": "threshold-email-queue",
+
+    "connection": "ThresholdEmailQueue",
+
+    "accessRights": "manage"
+
+    },
+
+    {
+
+    "type": "sendGrid",
+
+    "name": "$return",
+
+    "direction": "out",
+
+    "apiKey": "MySendGridKey",
+
+    "from": "Azure Functions <samples@functions.com>",
+
+    "to": "joe@contoso.com"
+
+    }
+
+],
+
+ 
+ 
+----code ---
+ 
+ 
+#r "SendGrid"
+ 
+using System;
+using SendGrid.Helpers.Mail;
+using Microsoft.Azure.WebJobs.Host;
+using System.Threading.Tasks;
+ 
+public static Mail Run(string telemetryEvent, TraceWriter log)
+{
+    var telemetry = JsonConvert.DeserializeObject<Telemetry>(telemetryEvent);
+    log.Info($"C# Queue trigger function processing brightness telemetry");
+ 
+    Mail message = new Mail()
+    {
+        Subject = "Threshold Exceeded"
+    };
+ 
+    Content content = new Content
+    {
+        Type = "text/plain",
+        Value = $"Your brightness threshold has been exceeded with a value of {telemetry.Brightness}."
+    };
+ 
+    message.AddContent(content);    
+    return message;
+}
+ 
+public class Telemetry 
+{
+    public int Brightness { get; set; }
+}

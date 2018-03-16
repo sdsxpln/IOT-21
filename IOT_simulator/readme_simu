@@ -1,0 +1,12 @@
+sudo npm install -g iothub-explorer@latest //for window, for mac no @latest
+
+//feb24
+HostName=msIOTHub786.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=2upcDaSUA69WLy+xgc6q2vNte/Q2aReO0BHSW9D+jY0=
+//
+iothub-explorer login "HostName=msIOTfeb.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=U60fZVKXulf2wk0zEeX19vKan3jeI5gGCqZ4SvSlC5A="
+
+iothub-explorer create msdevicefeb007 --connection-string
+
+npm init
+
+npm install azure-iot-device azure-iot-device-mqtt --save
